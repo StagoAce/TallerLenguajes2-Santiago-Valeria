@@ -22,5 +22,29 @@ public class ProductoDaoImp implements IProductoDao{
     public List<Producto> findall() {
         return em.createQuery("from Producto").getResultList();
     }
+
+    @Override
+    @Transactional
+    public void save(Producto producto) {
+        if(producto.getId() != null && producto.getId() > 0) {
+            em.merge(producto);
+        } else {
+            em.persist(producto);
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Producto findOne(Long Id) {
+        return em.find(Producto.class, Id);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long Id) {
+        Producto producto = findOne(Id);
+
+        em.remove(producto);
+    }
     
 }
