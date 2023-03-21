@@ -51,6 +51,42 @@
         </div>
     </nav>
 
+    <h1 th:text="${titlePage}"
+    class="text-center text-uppercase mb-3 mt-2 border border-success border-start-0 border-end-0"></h1>
+
+     
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">N° existencias</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto: ${productos}">
+                    <td th:text="${producto.id}"> </td>
+                        <td th:text="${producto.nombre}"> </td>
+                        <td th:text="${producto.descripcion}"> </td>
+                        <td th:text="${producto.CantidadUnidades}"> </td>
+                        <td th:text="${producto.Precio}"> </td>
+                        <td><a th:href="@{/productos/form/}+${producto.id}" class="btn btn-outline-success btn-xs">Editar</a></td>
+                        <td><a th:href="@{/productos/eliminar/}+${producto.id}" class="btn btn-outline-danger btn-xs" onclick="return confirm('¿Esta seguro de eliminar?')">Eliminar</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>

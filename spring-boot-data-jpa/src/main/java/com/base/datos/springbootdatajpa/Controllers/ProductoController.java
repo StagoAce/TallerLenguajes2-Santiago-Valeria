@@ -26,6 +26,7 @@ public class ProductoController {
     public String listar(Model model)
     {
         model.addAttribute("titlePage", "productos");
+        model.addAttribute("productos", productoDao.findall());
 
         return "productos/listar";
     }
