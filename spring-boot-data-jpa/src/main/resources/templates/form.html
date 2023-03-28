@@ -59,30 +59,50 @@
     <div class="d-flex justify-content-center">
         <div class="col-8 ">
             <form th:action="@{/form}" th:object="${cliente}" method="post">
+                <!--NOMBRE-->
                 <div class="form-group d-flex justify-content-center">
                     <label class="col-sm-2 col-form-label" for="">Nombre</label>
                     <div class="col-sm-6">
                         <input type="text" th:field="*{nombre}" class="form-control">
                     </div>
                 </div>
+                <div class="d-flex justify-content-center">
+                    <div class="text-danger" th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}"></div>
+                </div>
+
+                <!--APELLIDO-->
                 <div class="form-group d-flex justify-content-center mt-2">
                     <label class="col-sm-2 col-form-label" for="">Apellido</label>
                     <div class="col-sm-6">
                         <input type="text" th:field="*{Apellido}" class="form-control">
                     </div>
                 </div>
-                <div class="form-group d-flex justify-content-center mt-2">
-                    <label class="col-sm-2 col-form-label" for="">Email</label>
-                    <div class="col-sm-6">
-                        <input type="email" th:field="*{Email}" class="form-control">
-                    </div>
+                <div class="d-flex justify-content-center">
+                    <div class="text-danger" th:if="${#fields.hasErrors('Apellido')}" th:errors="*{Apellido}"></div>
                 </div>
+                
+                <!--EMAIL-->
+                <div class="form-group d-flex justify-content-center mt-2">
+                        <label class="col-sm-2 col-form-label" for="">Email</label>
+                        <div class="col-sm-6">
+                            <input type="text" th:field="*{Email}" class="form-control">
+                        </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="text-danger" th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}"></div>
+                </div>
+
+                <!--FECHA-->
                 <div class="form-group d-flex justify-content-center mt-2">
                     <label class="col-sm-2 col-form-label" for="">Fecha</label>
                     <div class="col-sm-6">
-                        <input type="text" th:field="*{fecha}" class="form-control">
+                        <input type="date" th:field="*{fecha}" class="form-control">
                     </div>
                 </div>
+                <div class="d-flex justify-content-center">
+                    <div class="text-danger" th:if="${#fields.hasErrors('Fecha')}" th:errors="*{Fecha}"></div>
+                </div>
+                <!--BOTON-->
                 <div class="form-group d-flex justify-content-center mt-3">
                     <div class="col-sm-6 d-flex justify-content-center">
                         <input type="submit" th:value="${button}" class="btn btn-outline-success">
