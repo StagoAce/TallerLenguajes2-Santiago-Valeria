@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "productos")
@@ -16,8 +19,16 @@ public class Producto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String Nombre, Descripcion;
+    @NotEmpty(message = "{NotEmpty.Producto.Nombre}")
+    private String Nombre;
+
+    @NotEmpty(message = "{NotEmpty.Producto.Descripcion}")
+    private String Descripcion;
+
+    @Min(value = 0, message = "{Min.Producto.CantidadUnidades}")
     private int CantidadUnidades;
+
+    @NotNull(message = "{NotNull.Producto.Precio}")
     private Float Precio;
     
     public Long getId() {

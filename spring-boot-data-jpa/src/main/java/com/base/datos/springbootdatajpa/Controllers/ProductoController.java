@@ -1,8 +1,11 @@
 package com.base.datos.springbootdatajpa.Controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,8 +48,16 @@ public class ProductoController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String guardar(Producto producto, SessionStatus status)
+    public String guardar(@Valid Producto producto,BindingResult result ,SessionStatus status, Model model)
     {
+        if(result.hasErrors())
+        {
+            model.addAttribute("button", "Registrar");
+            model.addAttribute("titlePage", "productos");
+            model.addAttribute("titulo", "FORMULARIO PRODUCTO");
+            return "/productos/form";
+        }
+
         productoDao.save(producto);
         status.setComplete();
         return "redirect:/productos/listar";

@@ -1,0 +1,20 @@
+package com.base.datos.springbootdatajpa.Controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class loginController {
+
+
+    @GetMapping("/login")
+    public String login(Model model)
+    {
+        model.addAttribute("titlePage", "LOGIN");
+        model.addAttribute("title", "Iniciar sesion");
+
+        return "login";
+    }
+    
+}
