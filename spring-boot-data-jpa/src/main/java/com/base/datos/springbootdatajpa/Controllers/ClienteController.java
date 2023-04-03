@@ -31,7 +31,7 @@ public class ClienteController {
         model.addAttribute("titulo", "Listado de clientes");
         model.addAttribute("clientes", clienteDao.findall());//los datos los trae por medio de una consulta
     
-        return "listar";
+        return "clientes/listar";
     }
 
     @GetMapping("/form")
@@ -44,7 +44,7 @@ public class ClienteController {
         model.addAttribute("cliente", cliente);
         model.addAttribute("button", "registrar cliente");
 
-        return "form";
+        return "clientes/form";
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
@@ -55,12 +55,12 @@ public class ClienteController {
             model.addAttribute("button", "guardar");
             model.addAttribute("titlePage", "Cliente");
             model.addAttribute("titulo", "formulario de clientes");
-            return "form";
+            return "clientes/form";
         }
 
         clienteDao.save(cliente);
         status.setComplete();
-        return "redirect:listar";
+        return "redirect:/clientes/listar";
     }
 
     @GetMapping("/form/{id}")
@@ -72,14 +72,14 @@ public class ClienteController {
         if (id > 0) {
             cliente = clienteDao.findOne(id);
         } else {
-            return "redirect:/listar";
+            return "redirect:/clientes/listar";
         }
 
         model.addAttribute("titulo", "Editar Cliente");
         model.addAttribute("cliente", cliente);
         model.addAttribute("button", "guardar cambios");
 
-        return "form";
+        return "clientes/form";
     }
 
     @GetMapping("/eliminar/{Id}")
@@ -89,13 +89,13 @@ public class ClienteController {
         {
             clienteDao.delete(id);
         }
-        return "redirect:/listar";
+        return "redirect:/clientes/listar";
     }
 
     @GetMapping("/")
     public ModelAndView home()
     {
-        ModelAndView modelAndView = new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("home/home");
 
         modelAndView.addObject("titlePage", "home");
         modelAndView.addObject("titulo", "welcome back");

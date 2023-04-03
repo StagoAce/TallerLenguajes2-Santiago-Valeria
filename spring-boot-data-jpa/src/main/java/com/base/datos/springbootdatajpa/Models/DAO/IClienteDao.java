@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.base.datos.springbootdatajpa.Models.Entity.Cliente;
 
-public interface IClienteDao 
+public interface IClienteDao
 {
     public List<Cliente>findall();    
 
